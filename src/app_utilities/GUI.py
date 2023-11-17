@@ -4,11 +4,10 @@ import tkinter as tk
 from tkinter import ttk
 
 
-class GuiComponents:
+class CryptoGuiComponents:
     def __init__(self, master, app):
         self.master = master
         self.app = app
-
         # Exchange Selection
         exchange_label = ttk.Label(self.master, text="Choose Exchange:")
         exchange_label.grid(row=0, column=0, padx=10, pady=5, sticky=tk.W)

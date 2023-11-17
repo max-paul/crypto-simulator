@@ -1,6 +1,6 @@
 import ccxt
 import tkinter as tk
-from .GUI import GuiComponents
+from .GUI import CryptoGuiComponents
 from .Simulation import Simulation
 from .Datahandling import DataHandling
 
@@ -22,7 +22,7 @@ class CryptoInvestmentApp:
         self.fee = tk.DoubleVar()
 
         # Instances of other classes
-        self.gui_components = GuiComponents(self.master, self)
+        self.gui_components = CryptoGuiComponents(self.master, self)
         self.simulation = Simulation(self)
         self.data_handling = DataHandling(self)
 
