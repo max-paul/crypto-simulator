@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
+import pandas as pd
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, filedialog
 
 
 class CryptoGuiComponents:
@@ -94,3 +95,35 @@ class CryptoGuiComponents:
         # Configure grid weights to make the frame expandable
         self.master.grid_rowconfigure(10, weight=1)
         self.master.grid_columnconfigure(10, weight=1)
+# Download CSV Button
+        download_button = ttk.Button(self.master, text="Download CSV", command=self.download_csv)
+        download_button.grid(row=8, column=3, padx=10, pady=5, sticky=tk.W)
+        # Save Chart Button
+        save_chart_button = ttk.Button(self.master, text="Save Chart", command=self.save_chart)
+        save_chart_button.grid(row=8, column=0, padx=10, pady=5, sticky=tk.W)
+
+    def download_csv(self):
+        # Get the data from the Treeview
+        data = []
+        for child in self.treeview.get_children():
+            values = self.treeview.item(child, 'values')
+            data.append(values)
+
+        # Create a DataFrame from the data
+        df = pd.DataFrame(data, columns=['investment_amount', 'tokens_bought', 'total_tokens',
+                                         'total_invested', 'current_value', 'return_on_investment'])
+
+        # Open a file dialog to choose the destination file
+        file_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("CSV files", "*.csv")])
+
+        if file_path:
+            # Save the DataFrame to a CSV file
+            df.to_csv(file_path, index=False)
+
+    def save_chart(self):
+        # Open a file dialog to choose the destination file
+        file_path = filedialog.asksaveasfilename(defaultextension=".jpg", filetypes=[("JPEG files", "*.jpg")])
+
+        if file_path:
+            # Save the chart as a JPG image
+            self.app.gui_components.fig.savefig(file_path, format='jpg', dpi=300)

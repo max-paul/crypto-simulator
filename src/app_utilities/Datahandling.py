@@ -32,3 +32,5 @@ class DataHandling:
     def filter_symbols_by_part(self, symbols, chosen_part):
         """Filter symbols based on the chosen part."""
         return [symbol for symbol in symbols if symbol.startswith(f"{chosen_part}/")]
+
+
