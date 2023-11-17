@@ -3,6 +3,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
 from tkinter import ttk
 
+
 class GuiComponents:
     def __init__(self, master, app):
         self.master = master
@@ -58,7 +59,7 @@ class GuiComponents:
         fee_entry = ttk.Entry(self.master, textvariable=self.app.fee)
         fee_entry.grid(row=5, column=1, padx=10, pady=5, sticky=tk.W)
 
-         # Simulate Button
+        # Simulate Button
         simulate_button = ttk.Button(self.master, text="Simulate", command=self.app.simulate_and_plot)
         simulate_button.grid(row=6, column=0, columnspan=3, pady=10)
 
@@ -69,11 +70,13 @@ class GuiComponents:
         self.canvas_widget.grid(row=7, column=0, columnspan=3, padx=10, pady=10)
 
         # Table (Treeview with Scrollbar)
-        columns = ['investment_amount','tokens_bought', 'total_tokens', 'total_invested', 'current_value', 'return_on_investment']
+        columns = ['investment_amount', 'tokens_bought', 'total_tokens', 'total_invested', 'current_value',
+                   'return_on_investment']
         self.tree_frame = ttk.Frame(self.master)
         self.tree_frame.grid(row=7, column=3, padx=10, pady=10, sticky="nsew")
 
-        self.treeview = ttk.Treeview(self.tree_frame, columns=columns, show="headings", height=25)  # Set the desired height
+        self.treeview = ttk.Treeview(self.tree_frame, columns=columns, show="headings",
+                                     height=25)  # Set the desired height
 
         for col in columns:
             self.treeview.heading(col, text=col)

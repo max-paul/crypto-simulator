@@ -2,6 +2,7 @@ import ccxt
 import pandas as pd
 from datetime import datetime, timedelta
 
+
 class Simulation:
     def __init__(self, app):
         self.app = app
@@ -69,6 +70,7 @@ class Simulation:
 
         # Calculate the return on investment
         df['return_on_investment'] = df['current_value'] - df['total_invested']
+
     def get_historical_crypto_prices(self, exchange, symbol, timeframe, limit, since):
         """Fetch historical cryptocurrency prices and return a DataFrame."""
         since_timestamp = int(since.timestamp() * 1000)

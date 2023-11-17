@@ -1,8 +1,9 @@
 import ccxt
 import tkinter as tk
-from GUI import GuiComponents
-from Simulation import Simulation
-from Datahandling import DataHandling
+from .GUI import GuiComponents
+from .Simulation import Simulation
+from .Datahandling import DataHandling
+
 
 class CryptoInvestmentApp:
     def __init__(self, master):
@@ -55,17 +56,19 @@ class CryptoInvestmentApp:
         self.gui_components.ax.plot(df['timestamp'], df['total_invested'], label='Total Invested', marker='o')
         self.gui_components.ax.plot(df['timestamp'], df['current_value'], label='Current Value', marker='o')
 
-        title = f"Investment Simulation - {self.chosen_exchange.get()} - {self.crypto_symbol.get()}"
-        self.gui_components.ax.set_title(title, fontsize=12)
+        title = f"Weekly Investment Simulation - {self.chosen_exchange.get()} - {self.crypto_symbol.get()}"
+        self.gui_components.ax.set_title(title, fontsize=6)
 
         self.gui_components.ax.set_xlabel('Date', fontsize=4)
         self.gui_components.ax.set_ylabel('Amount ($)', fontsize=4)
 
+        # Set smaller tick parameters
+        self.gui_components.ax.tick_params(axis='both', which='both', labelsize=4)
         self.gui_components.ax.legend()
         self.gui_components.ax.grid(True)
 
         self.gui_components.canvas.draw()
-        
+
     def simulate_and_plot(self):
         investment_simulation = self.run_simulation()
         print("Simulation Results DataFrame:")
@@ -74,16 +77,6 @@ class CryptoInvestmentApp:
         # Add this line to check the DataFrame columns
         print("DataFrame Columns:", investment_simulation.columns)
         front_end_df = investment_simulation[[
-'investment_amount','tokens_bought', 'total_tokens', 'total_invested', 'current_value', 'return_on_investment']]
+            'investment_amount', 'tokens_bought', 'total_tokens', 'total_invested', 'current_value',
+            'return_on_investment']]
         self.update_table(front_end_df)
-
-
-
-def main():
-    root = tk.Tk()
-    app = CryptoInvestmentApp(root)
-    root.mainloop()
-
-
-if __name__ == "__main__":
-    main()

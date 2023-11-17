@@ -1,5 +1,5 @@
 import tkinter as tk
-from CryptoApp import CryptoInvestmentApp
+from app_utilities.CryptoApp import CryptoInvestmentApp
 
 def main():
     root = tk.Tk()
