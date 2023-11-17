@@ -53,8 +53,12 @@ class CryptoInvestmentApp:
 
     def plot_simulation(self, df):
         self.gui_components.ax.clear()
-        self.gui_components.ax.plot(df['timestamp'], df['total_invested'], label='Total Invested', marker='o')
-        self.gui_components.ax.plot(df['timestamp'], df['current_value'], label='Current Value', marker='o')
+        marker_size = 2
+
+        self.gui_components.ax.plot(df['timestamp'], df['total_invested'], label='Total Invested', marker='o',
+                                    markersize=marker_size)
+        self.gui_components.ax.plot(df['timestamp'], df['current_value'], label='Current Value', marker='o',
+                                    markersize=marker_size)
 
         title = f"Weekly Investment Simulation - {self.chosen_exchange.get()} - {self.crypto_symbol.get()}"
         self.gui_components.ax.set_title(title, fontsize=6)
