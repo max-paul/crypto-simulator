@@ -63,7 +63,8 @@ The Crypto Investment Simulator is a Python application that allows users to sim
 1. Navigate to the project directory:
 
    ```bash
-   cd crypto-investment-simulator
+   cd crypto-simulator
+   cd src
    ```
 
 2. Run the application:
